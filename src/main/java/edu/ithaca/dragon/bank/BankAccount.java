@@ -42,6 +42,31 @@ public class BankAccount {
         if (email.indexOf('@') == -1){
             return false;
         }
+        if (email.indexOf('.') == 0 || email.indexOf('.') == -1){
+            return false;
+        }
+        if (email.indexOf('#') != -1){
+            return false;
+        }
+        String[] split = email.split("@");
+        if (split.length > 2){
+            return false;
+        }
+        String prefix  = split[0];
+        String backHalf = split[1];
+        System.out.println(backHalf);
+        String[] newSplit = backHalf.split("\\.", 0);
+        System.out.println(newSplit[0]);
+        System.out.println(newSplit[1]);
+        if (newSplit.length > 2){
+            return false;
+        }
+        if (newSplit[0].length() < 1){
+            return false;
+        }
+        if (split[1].length() < 2){
+            return false;
+        }
         else {
             return true;
         }
