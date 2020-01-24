@@ -23,15 +23,15 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
-        assertTrue(BankAccount.isEmailValid(("a-c@b.com")));
-        assertFalse(BankAccount.isEmailValid((".a@b.c")));
-        assertFalse(BankAccount.isEmailValid((".a@b.com")));
-        assertFalse(BankAccount.isEmailValid(("a#@b.com")));
-        assertFalse(BankAccount.isEmailValid(("a.d@.com")));
-        assertFalse(BankAccount.isEmailValid(("a_s@.com")));
-        assertFalse(BankAccount.isEmailValid(("a@.com")));
-        assertFalse( BankAccount.isEmailValid(""));
+        assertTrue(BankAccount.isEmailValid( "a@b.com"));   //equivalence case
+        assertTrue(BankAccount.isEmailValid(("a-c@b.com")));//equivalence case
+        assertFalse(BankAccount.isEmailValid((".a@b.c")));  //border case
+        assertFalse(BankAccount.isEmailValid((".a@b.com")));//equivalence case
+        assertFalse(BankAccount.isEmailValid(("a#@b.com")));//border case
+        assertFalse(BankAccount.isEmailValid(("a.d@.com")));//border case
+        assertFalse(BankAccount.isEmailValid(("a_s@.com")));//border case
+        assertFalse(BankAccount.isEmailValid(("a@.com")));  //equivalence case
+        assertFalse( BankAccount.isEmailValid(""));         //equivalence case
     }
 
     @Test
