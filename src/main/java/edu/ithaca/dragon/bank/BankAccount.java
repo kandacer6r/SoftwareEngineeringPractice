@@ -32,27 +32,43 @@ public class BankAccount {
      * the given amount. If the num is negative then an exception is thrown or if the amount
      * trying to be taken out is
      */
-    public void withdraw (double amount)  {
+    public void withdraw (double amount) throws InsufficientFundsException{
+        if(amount<0){
+            throw new IllegalArgumentException("Amount cannot be negative");
+        }
+        if(amount>balance){
+            throw new InsufficientFundsException("Cannot withdraw more than available in account");
+        }
         balance -= amount;
 
     }
 
 
     public static boolean isEmailValid(String email){
-        if (email.indexOf('@') == -1){
+        if (email.indexOf('@') == -1){ //Checks for '@'
             return false;
         }
-        if (email.indexOf('.') == 0 || email.indexOf('.') == -1){
+        if (email.indexOf('.') == 0 || email.indexOf('.') == -1){ //checks for '.' but not at beginning
             return false;
         }
-        if (email.indexOf('#') != -1){
+        if (email.indexOf('#') != -1){ //Checks for an illegal character
             return false;
+        }
+        for (int i=0; i<email.length(); i++){ //checks entire email for any occurrence of '..' which is illegal
+            if(email.charAt(i) == '.'){
+                if(email.charAt(i+1) == '.'){
+                    return false;
+                }
+            }
         }
         String[] split = email.split("@");
         if (split.length > 2){
             return false;
         }
         String prefix  = split[0];
+        if (prefix.charAt(-1) == '.'||prefix.charAt(-1) == '-'||prefix.charAt(-1) == '_'){ //checks that '.', '-', or '_' are not at end of prefix
+            return false;
+        }
         String backHalf = split[1];
         System.out.println(backHalf);
         String[] newSplit = backHalf.split("\\.", 0);
