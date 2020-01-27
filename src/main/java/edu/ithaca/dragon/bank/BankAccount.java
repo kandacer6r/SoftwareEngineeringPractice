@@ -66,14 +66,11 @@ public class BankAccount {
             return false;
         }
         String prefix  = split[0];
-        if (prefix.charAt(-1) == '.'||prefix.charAt(-1) == '-'||prefix.charAt(-1) == '_'){ //checks that '.', '-', or '_' are not at end of prefix
+        if (prefix.charAt(prefix.length()-1) == '.'||prefix.charAt(prefix.length()-1) == '-'||prefix.charAt(prefix.length()-1) == '_'){ //checks that '.', '-', or '_' are not at end of prefix
             return false;
         }
         String backHalf = split[1];
-        System.out.println(backHalf);
         String[] newSplit = backHalf.split("\\.", 0);
-        System.out.println(newSplit[0]);
-        System.out.println(newSplit[1]);
         if (newSplit.length > 2){
             return false;
         }

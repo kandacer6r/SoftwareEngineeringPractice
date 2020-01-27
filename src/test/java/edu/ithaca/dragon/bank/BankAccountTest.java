@@ -36,7 +36,7 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid((".a@b.c")));  //border case
         assertFalse(BankAccount.isEmailValid((".a@b.com")));//equivalence case
         assertFalse(BankAccount.isEmailValid(("a#@b.com")));//border case
-        assertFalse(BankAccount.isEmailValid(("a.d@b.com")));//border case
+        assertTrue(BankAccount.isEmailValid(("a.d@b.com")));//border case
         assertTrue(BankAccount.isEmailValid(("a_s@b.com")));//border case
         assertFalse(BankAccount.isEmailValid(("a@.com")));  //equivalence case
         assertFalse( BankAccount.isEmailValid(""));         //equivalence case
