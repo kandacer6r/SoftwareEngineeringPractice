@@ -19,6 +19,14 @@ class BankAccountTest {
         bankAccount.withdraw(100);
 
         assertEquals(100, bankAccount.getBalance());
+
+        bankAccount.withdraw(30);
+        assertEquals(70, bankAccount.getBalance());
+
+        //check for exception thrown correctly
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(-200)); // Border neg withdrawal
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(80)); //Border over withdrawal
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(1000)); //Equivalence over withdrawal
     }
 
     @Test
