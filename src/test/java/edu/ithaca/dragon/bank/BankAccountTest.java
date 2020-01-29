@@ -28,6 +28,18 @@ class BankAccountTest {
         assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(80)); //Border over withdrawal
         assertThrows(InsufficientFundsException.class, ()-> bankAccount.withdraw(1000)); //Equivalence over withdrawal
     }
+    @Test
+    void isAmountValidTest(){
+        assertFalse(BankAccount.isAmountValid(-100));
+        assertFalse(BankAccount.isAmountValid(-0.23));
+        assertFalse(BankAccount.isAmountValid(.238923));
+        assertFalse(BankAccount.isAmountValid(1.00000000));
+        assertFalse(BankAccount.isAmountValid(0.310));
+        assertTrue(BankAccount.isAmountValid(1));
+        assertTrue(BankAccount.isAmountValid(1.2));
+        assertTrue(BankAccount.isAmountValid(1.22));
+        assertTrue(BankAccount.isAmountValid(10000.01));
+    }
 
     @Test
     void isEmailValidTest(){
@@ -39,6 +51,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid(("a.d@b.com")));//border case
         assertTrue(BankAccount.isEmailValid(("a_s@b.com")));//border case
         assertFalse(BankAccount.isEmailValid(("a@.com")));  //equivalence case
+        assertFalse(BankAccount.isEmailValid(("a@.comp")));  //equivalence case
         assertFalse( BankAccount.isEmailValid(""));         //equivalence case
     }
 

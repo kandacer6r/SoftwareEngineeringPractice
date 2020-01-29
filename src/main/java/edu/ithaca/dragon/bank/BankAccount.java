@@ -42,6 +42,10 @@ public class BankAccount {
         balance -= amount;
 
     }
+    public static boolean isAmountValid(double amount){
+
+        return false;
+    }
 
 
     public static boolean isEmailValid(String email){
@@ -80,6 +84,8 @@ public class BankAccount {
         if (split[1].length() < 2){
             return false;
         }
+        if (!email.endsWith(".com"))
+            return false;
         else {
             return true;
         }
