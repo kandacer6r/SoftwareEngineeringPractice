@@ -33,13 +33,13 @@ class BankAccountTest {
         assertFalse(BankAccount.isAmountValid(-100));
         assertFalse(BankAccount.isAmountValid(-0.23));
         assertFalse(BankAccount.isAmountValid(.238923));
-        assertFalse(BankAccount.isAmountValid(1.00000000));
-        assertFalse(BankAccount.isAmountValid(0.310));
+        assertTrue(BankAccount.isAmountValid(1.0000000));
+        assertTrue(BankAccount.isAmountValid(0.310));
         assertTrue(BankAccount.isAmountValid(1));
         assertTrue(BankAccount.isAmountValid(1.2));
         assertTrue(BankAccount.isAmountValid(1.22));
         assertTrue(BankAccount.isAmountValid(10000.01));
-    }
+    }//make equivalence class stufff
 
     @Test
     void isEmailValidTest(){

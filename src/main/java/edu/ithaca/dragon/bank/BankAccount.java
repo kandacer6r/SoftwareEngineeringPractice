@@ -43,8 +43,15 @@ public class BankAccount {
 
     }
     public static boolean isAmountValid(double amount){
-
-        return false;
+        if(amount<0)
+            return false;
+        String strAmount = Double.toString(amount);
+        if(strAmount.indexOf('.')!=-1) {
+            String decimalPlaces = strAmount.substring(strAmount.indexOf('.'));
+            if(decimalPlaces.length()>3)
+                return false;
+        }
+        return true;
     }
 
 
