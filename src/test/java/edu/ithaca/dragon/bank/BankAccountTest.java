@@ -62,6 +62,9 @@ class BankAccountTest {
         assertEquals("a@b.com", bankAccount.getEmail());
         assertEquals(200, bankAccount.getBalance());
         //check for exception thrown correctly
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -2)); // Border neg withdrawal
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 2.22002)); // Border neg withdrawal
+
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
     }
 
