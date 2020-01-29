@@ -33,7 +33,7 @@ public class BankAccount {
      * trying to be taken out is
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if(amount<0){
+        if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount cannot be negative");
         }
         if(amount>balance){
