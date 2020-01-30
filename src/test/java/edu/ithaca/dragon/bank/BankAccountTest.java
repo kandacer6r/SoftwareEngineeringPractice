@@ -51,6 +51,29 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-1000)); //Equivalence over deposit
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-100.40001));
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(.3002));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-10)); //Equivalence over deposit
+
+    }
+    @Test
+    void TransferTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        bankAccount.Transfer("b@a.com",20);
+        assertEquals(180,bankAccount.getBalance());
+        bankAccount.Transfer("b@a.com",.500);
+        assertEquals(179.50,bankAccount.getBalance());
+        bankAccount.Transfer("b@a.com",179.50);
+        assertEquals(0,bankAccount.getBalance());
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("a@b.com",.300));
+        assertThrows(InsufficientFundsException.class, ()->bankAccount.Transfer("b@a.com",.05));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",.3001));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-.3001));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-10));
+
+
+
+
+
+
     }
     @Test
     void isEmailValidTest(){

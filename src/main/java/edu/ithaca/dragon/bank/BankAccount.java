@@ -71,7 +71,7 @@ public class BankAccount {
      * Transfers a valid amount (that isn't less than your balance) to another account
      * @param amount is transferred if amount is valid and isn't greater than the balance
      */
-    public void Transfer(double amount){
+    public void Transfer(String transferree,double amount){
 
     }
 
