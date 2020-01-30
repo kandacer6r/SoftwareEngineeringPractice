@@ -55,7 +55,11 @@ public class BankAccount {
     }
 
     public void Deposit(double amount){
-
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount is invalid");
+        }
+        else
+            balance+=amount;
     }
 
     public void Transfer(double amount){
