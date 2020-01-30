@@ -54,6 +54,11 @@ public class BankAccount {
         return true;
     }
 
+    /**
+     * Increases the balance by a valid amount provided by the user
+     * @param amount checks if amount is valid and then deposits this amount into balance(if valid)
+     */
+
     public void Deposit(double amount){
         if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Amount is invalid");
@@ -62,6 +67,10 @@ public class BankAccount {
             balance+=amount;
     }
 
+    /**
+     * Transfers a valid amount (that isn't less than your balance) to another account
+     * @param amount is transferred if amount is valid and isn't greater than the balance
+     */
     public void Transfer(double amount){
 
     }
