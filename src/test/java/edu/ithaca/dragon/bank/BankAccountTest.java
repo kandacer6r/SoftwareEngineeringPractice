@@ -55,7 +55,7 @@ class BankAccountTest {
 
     }
     @Test
-    void TransferTest(){
+    void TransferTest()throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         bankAccount.Transfer("b@a.com",20);
         assertEquals(180,bankAccount.getBalance());
@@ -68,11 +68,6 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",.3001));
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-.3001));
         assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-10));
-
-
-
-
-
 
     }
     @Test

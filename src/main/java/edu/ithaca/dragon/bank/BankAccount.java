@@ -69,10 +69,17 @@ public class BankAccount {
 
     /**
      * Transfers a valid amount (that isn't less than your balance) to another account
+     * @param transferee the email account the user want to transfer the money to
      * @param amount is transferred if amount is valid and isn't greater than the balance
      */
-    public void Transfer(String transferree,double amount){
-
+    public void Transfer(String transferee,double amount)throws InsufficientFundsException{
+        if(transferee.equals(email)){
+            throw new IllegalArgumentException("Can't transfer money to yourself. Use deposit option");
+        }
+        if(!isEmailValid(transferee)){
+            throw new IllegalArgumentException("Invalid mailing account");
+        }
+        withdraw(amount);
     }
 
     public static boolean isEmailValid(String email){
