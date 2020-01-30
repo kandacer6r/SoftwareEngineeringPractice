@@ -42,6 +42,17 @@ class BankAccountTest {
     }//make equivalence class stufff
 
     @Test
+    void DepositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        bankAccount.Deposit(1000);
+        assertEquals(1200,bankAccount.getBalance());
+        bankAccount.Deposit(2.20000);
+        assertEquals(1202.20,bankAccount.getBalance());
+        assertThrows(InsufficientFundsException.class, ()->bankAccount.Deposit(-1000)); //Equivalence over deposit
+        assertThrows(InsufficientFundsException.class, ()->bankAccount.Deposit(-100.40001));
+        assertThrows(InsufficientFundsException.class, ()->bankAccount.Deposit(.3002));
+    }
+    @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   //equivalence case
         assertTrue(BankAccount.isEmailValid(("a-c@b.com")));//equivalence case

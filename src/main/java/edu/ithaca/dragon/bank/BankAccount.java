@@ -54,6 +54,13 @@ public class BankAccount {
         return true;
     }
 
+    public void Deposit(double amount){
+
+    }
+
+    public void Transfer(double amount){
+
+    }
 
     public static boolean isEmailValid(String email){
         if (email.indexOf('@') == -1){ //Checks for '@'
