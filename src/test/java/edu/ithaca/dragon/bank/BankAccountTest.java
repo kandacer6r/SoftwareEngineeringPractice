@@ -30,44 +30,41 @@ class BankAccountTest {
     }
     @Test
     void isAmountValidTest(){
-        assertFalse(BankAccount.isAmountValid(-100));
-        assertFalse(BankAccount.isAmountValid(-0.23));
-        assertFalse(BankAccount.isAmountValid(.238923));
-        assertTrue(BankAccount.isAmountValid(1.0000000));
-        assertTrue(BankAccount.isAmountValid(0.310));
-        assertTrue(BankAccount.isAmountValid(1));
-        assertTrue(BankAccount.isAmountValid(1.2));
-        assertTrue(BankAccount.isAmountValid(1.22));
-        assertTrue(BankAccount.isAmountValid(10000.01));
-    }//make equivalence class stufff
+        assertFalse(BankAccount.isAmountValid(-100));//boarder case
+        assertFalse(BankAccount.isAmountValid(-0.23));//boarder case
+        assertFalse(BankAccount.isAmountValid(.238923));//Equivalence
+        assertTrue(BankAccount.isAmountValid(1.0000000));//equivalence
+        assertTrue(BankAccount.isAmountValid(0.310));//equivalence
+        assertTrue(BankAccount.isAmountValid(1.2));//equivalence
+        assertTrue(BankAccount.isAmountValid(1.22));//equivalence
+        assertTrue(BankAccount.isAmountValid(10000.01));//boarder/equivalence
+    }
 
     @Test
     void DepositTest(){
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-        bankAccount.Deposit(1000);
+        bankAccount.Deposit(1000);//equivalence
         assertEquals(1200,bankAccount.getBalance());
-        bankAccount.Deposit(2.20000);
+        bankAccount.Deposit(2.20000);//equivalence
         assertEquals(1202.20,bankAccount.getBalance());
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-1000)); //Equivalence over deposit
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-100.40001));
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(.3002));
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-10)); //Equivalence over deposit
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(.3002));//Equivalence
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Deposit(-10)); //boarder
 
     }
     @Test
     void TransferTest()throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-        bankAccount.Transfer("b@a.com",20);
+        bankAccount.Transfer("b@a.com",20);//equivalence
         assertEquals(180,bankAccount.getBalance());
-        bankAccount.Transfer("b@a.com",.500);
+        bankAccount.Transfer("b@a.com",.500);//boarder
         assertEquals(179.50,bankAccount.getBalance());
-        bankAccount.Transfer("b@a.com",179.50);
+        bankAccount.Transfer("b@a.com",179.50);//boarder
         assertEquals(0,bankAccount.getBalance());
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("a@b.com",.300));
-        assertThrows(InsufficientFundsException.class, ()->bankAccount.Transfer("b@a.com",.05));
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",.3001));
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-.3001));
-        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-10));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("a@b.com",.300));//equivalence
+        assertThrows(InsufficientFundsException.class, ()->bankAccount.Transfer("b@a.com",.05));//boarder
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",.3001));//boarder
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-.3001));//boarder
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.Transfer("b@a.com",-10));//boarder
 
     }
     @Test
@@ -92,9 +89,9 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance());
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -2)); // Border neg withdrawal
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 2.22002)); // Border neg withdrawal
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 2.22002)); //equivalence
 
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));//border?
     }
 
 }

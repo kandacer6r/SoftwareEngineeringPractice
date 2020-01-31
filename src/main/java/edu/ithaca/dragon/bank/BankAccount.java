@@ -33,10 +33,10 @@ public class BankAccount {
      * trying to be taken out is
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if(!isAmountValid(amount)){
+        if(!isAmountValid(amount)){//uses is valid to check if amount is valid or not
             throw new IllegalArgumentException("Amount cannot be negative");
         }
-        if(amount>balance){
+        if(amount>balance){//if the amount is bigger than the balance then throw exception
             throw new InsufficientFundsException("Cannot withdraw more than available in account");
         }
         balance -= amount;
@@ -48,7 +48,7 @@ public class BankAccount {
         String strAmount = Double.toString(amount);
         if(strAmount.indexOf('.')!=-1) {
             String decimalPlaces = strAmount.substring(strAmount.indexOf('.'));
-            if(decimalPlaces.length()>3)
+            if(decimalPlaces.length()>3)//if the string from '.' has a length higher than three then there are other valid numbers beyond the two decimal places
                 return false;
         }
         return true;
@@ -60,7 +60,7 @@ public class BankAccount {
      */
 
     public void Deposit(double amount){
-        if(!isAmountValid(amount)){
+        if(!isAmountValid(amount)){//checks if the amount given is valid or not
             throw new IllegalArgumentException("Amount is invalid");
         }
         else
@@ -73,10 +73,10 @@ public class BankAccount {
      * @param amount is transferred if amount is valid and isn't greater than the balance
      */
     public void Transfer(String transferee,double amount)throws InsufficientFundsException{
-        if(transferee.equals(email)){
+        if(transferee.equals(email)){//the user cannot transfer money to themselves
             throw new IllegalArgumentException("Can't transfer money to yourself. Use deposit option");
         }
-        if(!isEmailValid(transferee)){
+        if(!isEmailValid(transferee)){//checks the validity of the email given by the user
             throw new IllegalArgumentException("Invalid mailing account");
         }
         withdraw(amount);
